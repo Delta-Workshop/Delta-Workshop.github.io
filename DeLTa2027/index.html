@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DeLTa 2027: a proposed ICLR workshop on deep generative models, connecting learning theory, efficient sampling, and reliable control.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#102a48">
+  <title>DeLTa 2027 · Theory, Principles and Efficacy</title>
+  <style>
+:root {
+  --ink: #203348;
+  --muted: #536579;
+  --blue: #1769aa;
+  --line: #dce5ee;
+  --surface: #f3f6fa;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body { margin: 0; color: var(--ink); background: var(--surface); font-family: Arial, Helvetica, sans-serif; font-size: 17px; line-height: 1.65; }
+a { color: var(--blue); text-underline-offset: 4px; }
+a:hover { color: #104f82; }
+a:focus-visible { outline: 3px solid #db9b2a; outline-offset: 5px; border-radius: 2px; }
+p { margin: 0 0 16px; }
+h1, h2, h3 { line-height: 1.25; }
+.skip-link { position: absolute; top: -100px; left: 20px; z-index: 10; padding: 10px 16px; color: var(--ink); background: white; }
+.skip-link:focus { top: 12px; }
+.hero { color: #fff; background: radial-gradient(ellipse at 85% 20%, #254d72 0, transparent 50%), radial-gradient(ellipse at 10% 95%, #173c5d 0, transparent 50%), #102a48; }
+.navigation { max-width: 1140px; margin: auto; padding: 24px 30px; display: flex; justify-content: space-between; align-items: center; gap: 24px; border-bottom: 1px solid #ffffff29; }
+.navigation a { color: white; text-decoration: none; }
+.brand { font-size: 25px; font-weight: 700; letter-spacing: -.6px; white-space: nowrap; }
+.brand span { font-size: 17px; font-weight: 400; color: #afc8df; margin-left: 5px; letter-spacing: 0; }
+.nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; font-size: 15px; }
+.nav-links a:hover { color: #a9d8fa; }
+.hero-content { max-width: 1020px; margin: auto; text-align: center; padding: 65px 24px 67px; }
+.status { display: inline-flex; align-items: center; gap: 9px; border: 1px solid #ffffff50; border-radius: 30px; background: #ffffff09; padding: 6px 15px; margin-bottom: 28px; font-size: 13px; color: #e1edf8; }
+.status span { width: 7px; height: 7px; border-radius: 50%; background: #d6bf80; }
+.eyebrow { font-size: 13px; letter-spacing: 1.7px; text-transform: uppercase; color: #b5cede; margin-bottom: 18px; }
+h1 { margin: 0; font-size: clamp(34px, 4.2vw, 58px); font-weight: 700; letter-spacing: -1.3px; }
+.subtitle { margin: 20px 0 18px; font-size: clamp(21px, 2.2vw, 29px); color: #8dcef6; }
+.hero-description { font-size: 18px; color: #d2e0eb; line-height: 1.6; }
+.hero-actions { display: flex; justify-content: center; gap: 12px; margin: 30px 0 22px; }
+.button { display: inline-block; padding: 11px 21px; border-radius: 5px; border: 1px solid #a9d8fa; background: #c0e3fb; color: #12324e; font-size: 15px; font-weight: 700; text-decoration: none; }
+.button:hover { color: #12324e; background: #deeffb; }
+.button-outline { border-color: #8ca9c1; background: transparent; color: white; }
+.button-outline:hover { background: #ffffff12; color: white; }
+.hero-note { font-size: 12px; color: #bbcdda; margin: 0; }
+.container { max-width: 1080px; padding: 54px 30px 34px; margin: auto; }
+.section { margin: 0 0 34px; padding: 38px 42px; background: white; border: 1px solid var(--line); border-radius: 9px; }
+.section-heading { text-align: center; margin-bottom: 28px; }
+.section-label { color: var(--blue); font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; margin: 0 0 10px; }
+h2 { font-size: 28px; letter-spacing: -.5px; margin: 0 0 12px; }
+.section-heading > p:last-child:not(.section-label) { font-size: 15px; color: var(--muted); max-width: 670px; margin: 12px auto 0; }
+.about > p { max-width: 850px; }
+.central-question { padding: 22px 26px; border-left: 3px solid #2781bd; background: #edf5fb; margin-top: 27px; }
+.central-question > p:last-child { font-size: 20px; line-height: 1.55; font-weight: 500; margin: 0; }
+.topic-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.topic-card { padding: 23px 21px; background: #f6f8fb; border: 1px solid #e3eaf2; border-radius: 6px; }
+.topic-number { color: #6b8fae; font-size: 13px; letter-spacing: 2px; font-weight: 700; }
+.topic-card h3 { font-size: 19px; margin: 14px 0 13px; }
+.topic-card p { font-size: 14px; line-height: 1.6; color: var(--muted); margin: 0; }
+.topic-card .topic-question { font-size: 15px; color: var(--ink); margin-bottom: 15px; font-weight: 600; }
+.scope-note { font-size: 14px; color: var(--muted); margin: 22px 0 0; text-align: center; }
+.people-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.person { text-align: center; padding: 24px 14px; border: 1px solid #e3eaf2; background: #fbfcfe; border-radius: 6px; }
+.monogram { display: inline-flex; align-items: center; justify-content: center; width: 68px; height: 68px; border-radius: 50%; background: #e7f0f9; color: #396384; font-size: 21px; letter-spacing: 1px; font-weight: 500; }
+.person h3 { font-size: 18px; margin: 16px 0 8px; }
+.person h3 a { color: #185e96; text-decoration: none; }
+.person h3 a:hover { text-decoration: underline; }
+.person p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.organizers-grid .person:last-child { grid-column: 2; }
+.updates { background: #edf5fb; border-color: #d1e3f1; }
+.updates p { font-size: 16px; }
+.updates p:last-child { margin-bottom: 0; }
+.contact { display: grid; grid-template-columns: 1.5fr 1fr; gap: 45px; }
+.contact h2 { font-size: 23px; }
+.contact p { font-size: 15px; }
+.contact a { overflow-wrap: anywhere; }
+.previous-editions { border-left: 1px solid var(--line); padding-left: 30px; }
+.previous-editions h3 { margin: 2px 0 20px; font-size: 17px; }
+.previous-editions a { display: block; font-size: 14px; text-decoration: none; margin-bottom: 12px; }
+.previous-editions span { margin-left: 5px; }
+footer { color: #bccddd; background: #102a48; text-align: center; padding: 30px 20px; font-size: 12px; }
+footer p { margin: 0 0 5px; }
+footer a { color: #c0e3fb; }
+@media (max-width: 800px) {
+  .navigation { padding: 20px 24px; gap: 15px; }
+  .nav-links { gap: 14px; font-size: 13px; }
+  .section { padding: 30px 26px; }
+  .topic-grid { grid-template-columns: 1fr; }
+  .topic-card { padding: 22px; }
+  .topic-card h3 { margin-top: 8px; }
+  .people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .organizers-grid .person:last-child { grid-column: 1 / -1; max-width: 280px; width: 100%; justify-self: center; }
+  .contact { gap: 24px; }
+  h2 { font-size: 25px; }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .navigation { flex-direction: column; padding: 17px 18px; gap: 12px; }
+  .nav-links { gap: 15px; font-size: 12px; }
+  .hero-content { padding: 40px 20px 45px; }
+  .eyebrow { font-size: 10px; letter-spacing: 1px; }
+  .status { font-size: 11px; padding: 5px 12px; margin-bottom: 23px; }
+  h1 { font-size: 34px; letter-spacing: -.7px; }
+  .hero-description { font-size: 16px; }
+  .desktop-break { display: none; }
+  .hero-actions { flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+  .button { font-size: 13px; padding: 10px 14px; }
+  .hero-note { font-size: 11px; }
+  .container { padding: 25px 16px 5px; }
+  .section { padding: 27px 22px; margin-bottom: 22px; }
+  .section-heading { margin-bottom: 23px; }
+  h2 { font-size: 24px; }
+  .central-question { padding: 19px; }
+  .central-question > p:last-child { font-size: 18px; }
+  .people-grid { grid-template-columns: 1fr; gap: 13px; }
+  .person { padding: 23px 16px; }
+  .organizers-grid .person:last-child { grid-column: auto; max-width: none; }
+  .contact { grid-template-columns: 1fr; gap: 20px; }
+  .previous-editions { border-left: 0; border-top: 1px solid var(--line); padding: 23px 0 0; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="hero" id="top">
+    <nav class="navigation" aria-label="Main navigation">
+      <a class="brand" href="#top">DeLTa <span>2027</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#topics">Topics</a>
+        <a href="#speakers">Speakers</a>
+        <a href="#organizers">Organizers</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <p class="status"><span aria-hidden="true"></span> Workshop proposal in preparation</p>
+      <p class="eyebrow">Third DeLTa workshop · Proposed for ICLR 2027</p>
+      <h1>Deep Generative Models<br>in Machine Learning</h1>
+      <p class="subtitle">Theory, Principles and Efficacy</p>
+      <p class="hero-description">Connecting learning dynamics, efficient sampling,<br class="desktop-break"> and reliable control.</p>
+      <div class="hero-actions">
+        <a class="button" href="#about">Explore the workshop</a>
+        <a class="button button-outline" href="#speakers">Proposed speakers</a>
+      </div>
+      <p class="hero-note">Workshop acceptance, date and venue are to be confirmed.</p>
+    </div>
+  </header>
+
+  <main class="container" id="main">
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="section-heading">
+        <p class="section-label">About DeLTa</p>
+        <h2 id="about-title">From theory to principles for generation</h2>
+      </div>
+      <p>Deep generative models support image and audio synthesis, language generation, and scientific modeling. Their usefulness depends on how they learn a distribution and how that learned distribution changes during sampling, acceleration, and adaptation.</p>
+      <p>The proposed third DeLTa workshop brings together researchers in learning theory, probability, dynamical systems, statistical physics, and applied generative modeling. Building on the <a href="https://delta-workshop.github.io/">2025</a> and <a href="https://delta-workshop.github.io/DeLTa2026/">2026</a> editions, we aim to connect mathematical understanding with practical decisions in generative modeling.</p>
+      <div class="central-question">
+        <p class="section-label">Our central question</p>
+        <p>Which properties of learning and sampling dynamics provide actionable principles for efficient and reliable generation?</p>
+      </div>
+    </section>
+
+    <section class="section" id="topics" aria-labelledby="topics-title">
+      <div class="section-heading">
+        <p class="section-label">Scientific scope</p>
+        <h2 id="topics-title">Three connected questions</h2>
+      </div>
+      <div class="topic-grid">
+        <article class="topic-card">
+          <span class="topic-number" aria-hidden="true">01</span>
+          <h3>Learning structure</h3>
+          <p class="topic-question">How do generative models learn structure and generalize?</p>
+          <p>Learning dynamics, data geometry, representation learning, memorization, and statistical physics of generation.</p>
+        </article>
+        <article class="topic-card">
+          <span class="topic-number" aria-hidden="true">02</span>
+          <h3>Efficient sampling</h3>
+          <p class="topic-question">What is preserved when sampling is accelerated?</p>
+          <p>Diffusion and flow matching, numerical methods, stochastic dynamics, few-step generation, and distillation.</p>
+        </article>
+        <article class="topic-card">
+          <span class="topic-number" aria-hidden="true">03</span>
+          <h3>Reliable control</h3>
+          <p class="topic-question">How can guidance and adaptation control a learned distribution reliably?</p>
+          <p>Guidance, constraints, post-training, robustness, and evaluation in scientific and multimodal applications.</p>
+        </article>
+      </div>
+      <p class="scope-note">The scope spans continuous and discrete generative models, with connections to scientific discovery, audio, biology, and trustworthy AI.</p>
+    </section>
+
+    <section class="section" id="speakers" aria-labelledby="speakers-title">
+      <div class="section-heading">
+        <p class="section-label">Proposed program</p>
+        <h2 id="speakers-title">Proposed speakers</h2>
+        <p>The following lineup is proposed. Participation and talk details will be updated as arrangements are finalized.</p>
+      </div>
+      <div class="people-grid speakers-grid">
+        <article class="person">
+          <span class="monogram" aria-hidden="true">QQ</span>
+          <h3><a href="https://qingqu.engin.umich.edu/">Qing Qu</a></h3>
+          <p>University of Michigan</p>
+        </article>
+        <article class="person">
+          <span class="monogram" aria-hidden="true">MT</span>
+          <h3><a href="https://math.gatech.edu/people/molei-tao">Molei Tao</a></h3>
+          <p>Georgia Institute of Technology</p>
+        </article>
+        <article class="person">
+          <span class="monogram" aria-hidden="true">CB</span>
+          <h3><a href="https://people.epfl.ch/383421?lang=en">Charlotte Bunne</a></h3>
+          <p>EPFL</p>
+        </article>
+        <article class="person">
+          <span class="monogram" aria-hidden="true">LZ</span>
+          <h3><a href="https://people.epfl.ch/lenka.zdeborova?lang=en">Lenka Zdeborová</a></h3>
+          <p>EPFL</p>
+        </article>
+        <article class="person">
+          <span class="monogram" aria-hidden="true">SE</span>
+          <h3><a href="https://cs.stanford.edu/~ermon/">Stefano Ermon</a></h3>
+          <p>Stanford University</p>
+        </article>
+        <article class="person">
+          <span class="monogram" aria-hidden="true">CH</span>
+          <h3>Catherine Huang</h3>
+          <p>Google</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="organizers" aria-labelledby="organizers-title">
+      <div class="section-heading">
+        <p class="section-label">Organizing team</p>
+        <h2 id="organizers-title">Organizers</h2>
+      </div>
+      <div class="people-grid organizers-grid">
+        <article class="person">
+          <span class="monogram" aria-hidden="true">MB</span>
+          <h3><a href="https://scholar.google.com/citations?user=lo0_2rMAAAAJ&amp;hl=en">Mingyuan Bai</a></h3>
+          <p>A*STAR Centre for Frontier AI Research</p>
+        </article>
+        <article class="person">
+          <span class="monogram" aria-hidden="true">WH</span>
+          <h3><a href="https://weihuang05.github.io/">Wei Huang</a></h3>
+          <p>RIKEN AIP</p>
+        </article>
+        <article class="person">
+          <span class="monogram" aria-hidden="true">AN</span>
+          <h3><a href="https://sites.google.com/site/atsushinitanda/home">Atsushi Nitanda</a></h3>
+          <p>A*STAR CFAR · Nanyang Technological University</p>
+        </article>
+        <article class="person">
+          <span class="monogram" aria-hidden="true">PW</span>
+          <h3><a href="https://peng8wang.github.io/">Peng Wang</a></h3>
+          <p>University of Macau</p>
+        </article>
+        <article class="person">
+          <span class="monogram" aria-hidden="true">AD</span>
+          <h3><a href="https://arnauddoucet.github.io/index.html">Arnaud Doucet</a></h3>
+          <p>Google DeepMind · University of Oxford</p>
+        </article>
+        <article class="person">
+          <span class="monogram" aria-hidden="true">NC</span>
+          <h3><a href="https://ni-sha-c.github.io/">Nisha Chandramoorthy</a></h3>
+          <p>University of Chicago</p>
+        </article>
+        <article class="person">
+          <span class="monogram" aria-hidden="true">YM</span>
+          <h3>Yuhki Mitsufuji</h3>
+          <p>Sony AI · Sony Group Corporation</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section updates" id="participation" aria-labelledby="participation-title">
+      <div class="section-heading">
+        <p class="section-label">Stay informed</p>
+        <h2 id="participation-title">Participation and program updates</h2>
+      </div>
+      <p>We are preparing a proposal for <a href="https://iclr.cc/Conferences/2027">ICLR 2027</a>. A call for papers, submission instructions, participation details, and the workshop schedule will be announced here if the proposal is accepted.</p>
+      <p>The proposed format includes invited talks, contributed presentations, posters, and discussion. Submissions are not yet open.</p>
+    </section>
+
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div>
+        <p class="section-label">Get in touch</p>
+        <h2 id="contact-title">Contact the organizing team</h2>
+        <p>For workshop inquiries, please contact us at<br><a href="mailto:delta.workshop.ml@gmail.com">delta.workshop.ml@gmail.com</a>.</p>
+      </div>
+      <div class="previous-editions">
+        <h3>Previous editions</h3>
+        <a href="https://delta-workshop.github.io/">DeLTa 2025 · Singapore <span aria-hidden="true">↗</span></a>
+        <a href="https://delta-workshop.github.io/DeLTa2026/">DeLTa 2026 · Rio de Janeiro <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>DeLTa 2027 · Deep Generative Models: Theory, Principles and Efficacy</p>
+    <p>Workshop proposal in preparation · <a href="#top">Back to top ↑</a></p>
+  </footer>
+</body>
+</html>
