@@ -28,6 +28,17 @@ a:focus-visible { outline: 3px solid #00bfff; outline-offset: 5px; }
   padding: 12px;
 }
 .skip-link:focus { top: 12px; }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
 .hero {
   position: relative;
   min-height: 100vh;
@@ -121,6 +132,12 @@ section { scroll-margin-top: 25px; }
 .section-style h3 { margin: 28px 0 15px; font-size: 1.25rem; }
 .section-style ul { padding-left: 30px; }
 .section-style li { margin-bottom: 12px; }
+.container .cfp-note { font-size: 15px; color: #666; }
+.dates-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 17px; line-height: 1.6; }
+.dates-table th,
+.dates-table td { border: 1px solid #ddd; padding: 12px 15px; text-align: left; vertical-align: top; }
+.dates-table th { width: 44%; background: #efefef; font-weight: 600; }
+.date-note { color: #666; font-size: 0.9em; }
 .organizer-section { padding: 20px 0; margin: 0 auto 25px; text-align: center; }
 .organizer-container {
   display: grid;
@@ -165,6 +182,9 @@ footer a { color: #ffffe0; font-weight: bold; overflow-wrap: anywhere; }
   .container h2 { font-size: 2rem; }
   .section-style { padding: 20px; }
   .section-style h2 { font-size: 1.75rem; }
+  .dates-table { font-size: 15px; }
+  .dates-table th,
+  .dates-table td { padding: 10px 8px; }
   .container p { text-align: left; }
   .organizer-container { grid-template-columns: 1fr; gap: 10px; }
   .organizer { padding: 15px 10px; }
@@ -181,6 +201,8 @@ footer a { color: #ffffe0; font-weight: bold; overflow-wrap: anywhere; }
       <span aria-hidden="true">|</span>
       <a href="#speakers">Speakers</a>
       <span aria-hidden="true">|</span>
+      <a href="#call">Call for Papers</a>
+      <span aria-hidden="true">|</span>
       <a href="#organizers">Organizers</a>
       <span aria-hidden="true">|</span>
       <a href="#previous">Previous Editions</a>
@@ -189,8 +211,8 @@ footer a { color: #ffffe0; font-weight: bold; overflow-wrap: anywhere; }
       <header>
         <h1>3rd Workshop on Deep Generative Models in Machine Learning:<br>Theory, Principles and Efficacy</h1>
       </header>
-      <p class="subtitle">ICLR 2027</p>
-      <a class="button" href="#speakers">Speakers</a>
+      <p class="subtitle">ICLR 2027, April 29–30, San Francisco, USA</p>
+      <a class="button" href="#call">Call for Papers</a>
     </div>
   </div>
 
@@ -206,6 +228,53 @@ footer a { color: #ffffe0; font-weight: bold; overflow-wrap: anywhere; }
         <li><strong>Reliable control:</strong> guidance, constraints, post-training, robustness, and evaluation in scientific and multimodal applications.</li>
       </ul>
       <p>The scope spans continuous and discrete generative models, with connections to scientific discovery, audio, biology, and trustworthy AI.</p>
+    </section>
+
+    <section id="call" class="section-style" aria-labelledby="call-title">
+      <h2 id="call-title">Call for Papers</h2>
+      <p class="cfp-note">Preliminary CFP. Submissions are not yet open; the OpenReview portal will be announced here.</p>
+      <p>We invite submissions to the <strong>3rd DeLTa Workshop on Deep Generative Models in Machine Learning: Theory, Principles and Efficacy</strong>. We welcome theoretical, methodological, and empirical research that advances our understanding of how generative models learn, sample, and adapt, and how these insights can improve their efficiency and reliability.</p>
+      <p>We encourage new and ongoing work, focused theoretical results, carefully designed experiments, and perspectives that identify important open problems. Contributions from early-career researchers and researchers across disciplines are especially welcome.</p>
+
+      <h3>Topics of Interest</h3>
+      <ul>
+        <li><strong>Theoretical foundations and learning dynamics:</strong> optimization, convergence, generalization, memorization, implicit bias, and feature learning in diffusion, flow-matching, autoregressive, and energy-based models.</li>
+        <li><strong>Geometry, probability, and statistical physics:</strong> score estimation, data and latent geometry, manifold learning, optimal transport, Schrödinger bridges, and stochastic control.</li>
+        <li><strong>Efficient and accurate sampling:</strong> numerical analysis of ODE/SDE solvers, discretization error, MCMC, distillation, consistency models, and one-step or few-step generation.</li>
+        <li><strong>Discrete and structured generation:</strong> diffusion language models, generation on graphs and manifolds, token ordering, parallel decoding, and compositionality.</li>
+        <li><strong>Post-training, adaptation, and control:</strong> guidance, conditioning, preference optimization, reinforcement learning, robustness, uncertainty, and evaluation.</li>
+        <li><strong>Multimodal generative modeling:</strong> image, audio, video, and language generation, including connections between theoretical principles and scalable systems.</li>
+        <li><strong>Generative models for science:</strong> physics, biology, molecular and protein design, chemistry, and materials, including inverse problems, physical constraints, and reliable scientific sampling.</li>
+      </ul>
+
+      <h3>Important Dates</h3>
+      <table class="dates-table">
+        <caption class="sr-only">DeLTa 2027 contribution deadlines and ICLR workshop dates</caption>
+        <tbody>
+          <tr><th scope="row">Paper Submission Deadline</th><td>February 1, 2027 <span class="date-note">(tentative)</span></td></tr>
+          <tr><th scope="row">Notification of Acceptance</th><td>February 26, 2027</td></tr>
+          <tr><th scope="row">Camera-Ready Deadline</th><td>March 24, 2027 <span class="date-note">(tentative)</span></td></tr>
+          <tr><th scope="row">ICLR Workshop Dates</th><td>April 29–30, 2027 · San Francisco, USA</td></tr>
+        </tbody>
+      </table>
+      <p class="cfp-note">Paper deadlines are at 23:59 Anywhere on Earth (AoE). DeLTa’s assigned workshop day and room will be announced.</p>
+
+      <h3>Submission Format and Review</h3>
+      <ul>
+        <li><strong>Short/Tiny Papers:</strong> up to <strong>4 pages</strong>, excluding references and appendices. We welcome focused results, simple ideas, informative experiments, and work in progress.</li>
+        <li><strong>Long Papers:</strong> up to <strong>8 pages</strong>, excluding references and appendices.</li>
+        <li>Submit an anonymized PDF using the <a class="link" href="https://media.iclr.cc/Conferences/ICLR2027/iclr-2027-style-files.zip">ICLR 2027 style files</a>. Reviewing will be <strong>double-blind</strong>; supplementary material should also preserve anonymity.</li>
+        <li>Submissions will be assessed for technical soundness, clarity, relevance, and the significance of their contribution. Short papers will be evaluated on the quality of their focused contribution.</li>
+        <li>We prioritize new and ongoing research. Any overlap with prior publications must be disclosed and accompanied by substantive new contributions.</li>
+        <li>Include an AI-use statement following the <a class="link" href="https://iclr.cc/Conferences/2027/AIPolicyForAuthors">ICLR 2027 author policy</a>. Short/Tiny Papers must be primarily human-authored: AI assistance is permitted, but AI-generated papers are not allowed.</li>
+      </ul>
+
+      <h3>Accepted Papers and Non-Archival Policy</h3>
+      <p>Accepted contributions will be presented as posters, with selected papers invited for contributed talks. Accepted papers will be publicly available on OpenReview by February 26, 2027. The workshop is <strong>non-archival</strong> and does not publish formal proceedings, so authors may subsequently submit their work to other venues.</p>
+
+      <h3>Submission Portal</h3>
+      <p>Submissions will be handled through <strong>OpenReview</strong>. The submission link will be posted here once available. Please ensure that all authors have an OpenReview profile.</p>
+      <p>For questions, contact <a class="link" href="mailto:delta.workshop.ml@gmail.com">delta.workshop.ml@gmail.com</a>.</p>
     </section>
 
     <section id="speakers" class="organizer-section" aria-labelledby="speakers-title">
