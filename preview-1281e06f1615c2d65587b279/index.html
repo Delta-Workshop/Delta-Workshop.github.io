@@ -171,6 +171,10 @@ section { scroll-margin-top: 25px; }
 footer { background: #333; color: #fff; text-align: center; padding: 20px 15px; }
 footer p { margin: 8px 0; line-height: 1.6; }
 footer a { color: #ffffe0; font-weight: bold; overflow-wrap: anywhere; }
+@media (min-width: 851px) {
+  header h1 { font-size: clamp(1.4rem, 2.65vw, 2.5rem); }
+  .title-main { white-space: nowrap; }
+}
 @media (max-width: 850px) {
   header h1 { font-size: 2.4rem; }
   .organizer-container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
@@ -213,7 +217,7 @@ footer a { color: #ffffe0; font-weight: bold; overflow-wrap: anywhere; }
     </nav>
     <div class="hero-text">
       <header>
-        <h1>3rd Workshop on Deep Generative Models in Machine Learning:<br>Theory, Principles and Efficacy</h1>
+        <h1><span class="title-main">3rd Workshop on Deep Generative Models in Machine Learning:</span><br>Theory, Principles and Efficacy</h1>
       </header>
       <p class="subtitle">ICLR 2027, April 29–30, San Francisco, USA</p>
       <a class="button" href="#call">Call for Papers</a>
